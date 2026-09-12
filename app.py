@@ -6,7 +6,8 @@ import os
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = "uploads"  # folder where uploaded files are saved temporarily
+UPLOAD_FOLDER = "uploads"     # folder where uploaded files are saved temporarily
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 ALLOWED_EXTENSIONS = {"pdf", "jpg", "jpeg", "png"}
 
 # Session configuration:
