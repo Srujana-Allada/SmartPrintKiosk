@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Upload document | SmartPrint Kiosk{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="flow" aria-label="Print process progress">
+    <div class="flow-step is-current"><span class="flow-marker"><svg class="icon"><use href="#icon-upload"></use></svg></span>Upload</div><div class="flow-step"><span class="flow-marker"><svg class="icon"><use href="#icon-settings"></use></svg></span>Choose</div><div class="flow-step"><span class="flow-marker"><svg class="icon"><use href="#icon-review"></use></svg></span>Review</div><div class="flow-step"><span class="flow-marker"><svg class="icon"><use href="#icon-payment"></use></svg></span>Pay</div><div class="flow-step"><span class="flow-marker"><svg class="icon"><use href="#icon-code"></use></svg></span>Code</div><div class="flow-step"><span class="flow-marker"><svg class="icon"><use href="#icon-printer"></use></svg></span>Print</div><div class="flow-step"><span class="flow-marker"><svg class="icon"><use href="#icon-check"></use></svg></span>Done</div>
+  </div>
+  <section class="page-heading reveal">
+    <p class="eyebrow"><svg class="icon"><use href="#icon-upload"></use></svg> Step 01</p>
+    <h1>Upload your document</h1>
+    <p class="lead">Bring a file and we’ll take care of the rest. Your document is kept temporarily for this print session.</p>
+  </section>
+  <div class="content-grid">
+    <section class="card panel reveal reveal-delay">
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <label class="upload-area" data-upload-area for="document-upload">
+          <span class="icon-chip" aria-hidden="true"><svg class="icon icon-lg"><use href="#icon-upload"></use></svg></span>
+          <strong>Upload document</strong>
+          <span class="muted">Tap here to choose your file</span>
+          <span class="file-name" data-file-name aria-live="polite"></span>
+          <input type="file" id="document-upload" name="document" accept="application/pdf, image/jpeg, image/png" />
+        </label>
+        <p class="supported">PDF / JPG / PNG</p>
+        {% if error %}<div class="alert alert-error" role="alert">{{ error }}</div>{% endif %}
+        <div class="actions"><button class="btn btn-primary btn-wide" type="submit"><svg class="icon"><use href="#icon-settings"></use></svg> Continue</button></div>
+      </form>
+    </section>
+    <aside class="card panel reveal reveal-delay">
+      <p class="eyebrow"><svg class="icon"><use href="#icon-document"></use></svg> Your document</p>
+      <h2>Ready to print</h2>
+      <p class="muted">Choose a file, then choose how you want it printed.</p>
+    </aside>
+  </div>
+</div>
+{% endblock %}

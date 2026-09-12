@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}SmartPrint Kiosk | Print smarter{% endblock %}
+{% block content %}
+<div class="container hero">
+  <section class="reveal">
+    <p class="eyebrow">Self-service printing</p>
+    <h1>Print smarter.<br /><span class="muted">Print easier.</span></h1>
+    <p class="lead">Upload your document, choose your settings, pay, and collect your print.</p>
+    <div class="actions">
+      <form action="/upload" method="get">
+        <button class="btn btn-primary btn-large" type="submit"><svg class="icon"><use href="#icon-document"></use></svg> Start printing <span class="btn-arrow" aria-hidden="true">→</span></button>
+      </form>
+    </div>
+    <p class="cta-note"><svg class="icon"><use href="#icon-upload"></use></svg> Upload your document to begin</p>
+  </section>
+  <aside class="device-visual reveal reveal-delay" aria-label="SmartPrint document preview">
+    <div class="device-ring" aria-hidden="true"></div>
+    <div class="device-card">
+      <div class="device-top"><span>SmartPrint</span><span>Ready</span></div>
+      <div class="device-printer" aria-hidden="true"><svg class="icon icon-xl"><use href="#icon-printer"></use></svg><span class="status-light"></span></div>
+      <div class="document-sheet" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    </div>
+  </aside>
+</div>
+{% endblock %}

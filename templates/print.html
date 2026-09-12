@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Ready to print | SmartPrint Kiosk{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="flow" aria-label="Print process progress"><div class="flow-step is-complete"><span class="flow-marker"><svg class="icon"><use href="#icon-check"></use></svg></span>Upload</div><div class="flow-step is-complete"><span class="flow-marker"><svg class="icon"><use href="#icon-check"></use></svg></span>Choose</div><div class="flow-step is-complete"><span class="flow-marker"><svg class="icon"><use href="#icon-check"></use></svg></span>Review</div><div class="flow-step is-complete"><span class="flow-marker"><svg class="icon"><use href="#icon-check"></use></svg></span>Pay</div><div class="flow-step is-complete"><span class="flow-marker"><svg class="icon"><use href="#icon-check"></use></svg></span>Code</div><div class="flow-step is-current"><span class="flow-marker"><svg class="icon"><use href="#icon-printer"></use></svg></span>Print</div><div class="flow-step"><span class="flow-marker"><svg class="icon"><use href="#icon-check"></use></svg></span>Done</div></div>
+  <section class="page-heading reveal"><p class="eyebrow"><svg class="icon"><use href="#icon-printer"></use></svg> Final step</p><h1>Ready to print</h1><p class="lead">Release your document when you are ready.</p></section>
+  <div class="content-grid">
+    <section class="card panel reveal reveal-delay">
+      <div class="status-card print-stage-card" data-print-stage-card>
+        <div class="print-stage-visual" aria-hidden="true">
+          <div class="stage-document"><svg class="icon icon-xl"><use href="#icon-document"></use></svg><span class="scan-line"></span><span class="stage-lines"></span></div>
+          <div class="stage-printer"><svg class="icon icon-xl"><use href="#icon-printer"></use></svg><span class="printer-light"></span><span class="paper-output"></span></div>
+        </div>
+        <p class="stage-kicker" data-stage-kicker>Ready when you are</p>
+        <h2 data-stage-title>Release print</h2>
+        <p class="muted" data-stage-description>This test flow simulates printing. No physical printer connection is being claimed.</p>
+        <div class="print-track" aria-label="Print status"><span class="track-step active" data-track-step="ready">Ready</span><span class="track-step" data-track-step="processing">Processing</span><span class="track-step" data-track-step="printing">Printing</span><span class="track-step" data-track-step="complete">Complete</span></div>
+        {% if error %}<div class="alert alert-error" role="alert">{{ error }}</div>{% endif %}
+        <form action="/print" method="post" data-print-form><button class="btn btn-primary btn-large btn-wide" type="submit"><svg class="icon"><use href="#icon-printer"></use></svg> Release print</button></form>
+      </div>
+    </section>
+    <aside class="card panel reveal reveal-delay"><p class="eyebrow"><svg class="icon"><use href="#icon-document"></use></svg> Print job</p><dl class="data-list"><div class="data-row"><dt>File</dt><dd>{{ uploaded_filename or '(none)' }}</dd></div><div class="data-row"><dt>Copies</dt><dd>{{ copies or '(not set)' }}</dd></div><div class="data-row"><dt>Print type</dt><dd>{{ print_type or '(not set)' }}</dd></div><div class="data-row"><dt>Paper size</dt><dd>{{ paper_size or '(not set)' }}</dd></div></dl></aside>
+  </div>
+</div>
+{% endblock %}
